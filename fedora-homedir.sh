@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Configures the home directory for Apache.
+# Works on Fedora 20.
 # Assumes that it has been run as 'root'.
 
 if [ "$(id -u)" != "0" ]; then
@@ -12,6 +13,7 @@ echo Back up userdir.conf
 cp /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/userdir.conf.backup
 
 echo Replace userdir.conf from GitHub copy
+yum install -y wget
 wget https://raw.githubusercontent.com/maellak/scripts/master/userdir.conf -O /etc/httpd/conf.d/userdir.conf
 
 echo Restart Apache
