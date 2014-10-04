@@ -13,8 +13,10 @@ echo Back up userdir.conf
 cp /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/userdir.conf.backup
 
 echo Replace userdir.conf from GitHub copy
-yum install -y wget
 wget https://raw.githubusercontent.com/maellak/scripts/master/userdir.conf -O /etc/httpd/conf.d/userdir.conf
+
+echo Installing required packages
+yum install -y wget php-mysqlnd php-gd php-mbstring phpmyadmin git
 
 echo Restart Apache
 service httpd restart
